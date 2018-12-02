@@ -4,7 +4,7 @@ let usersSchema = new Schema({
     "userId": String,
     "userPwd": String,
     "orderList": Array,
-    "carList": [{
+    "cartList": [{
         "productId": String,
         "productName": String,
         "salePrice": Number,
@@ -16,4 +16,4 @@ let usersSchema = new Schema({
     "addressList": Array
 });
 
-module.exports = mongoose.model('Users', usersSchema);
+module.exports = mongoose.model('User', usersSchema);

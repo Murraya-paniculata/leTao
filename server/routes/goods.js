@@ -2,6 +2,7 @@ let express = require('express');
 let mongoose = require('mongoose');
 let router = express.Router();
 let Goods = require('../models/goods');
+let User = require('../models/user');
 
 
 /*
@@ -65,6 +66,79 @@ router.get("/",function (req,res,next) {
             })
         }
     })
+});
+
+//加入购物车功能
+router.post("/addCart",function (req,res,next) {
+    let userId = '100000077';
+    let productId = req.body.productId;
+    console.log(343434);
+    User.findOne({ userId: userId },function (err,userDoc) {
+        if(err){
+            res.json({
+                status: '1',
+                msg: err.message
+            })
+        }else{
+            if(userDoc){
+                let goodsItem = '';
+                userDoc.cartList.forEach((item)=>{
+                    if(item.productId === productId){
+                        goodsItem = item;
+                        item.productNum ++;
+                    }
+                });
+                if(goodsItem){
+                    userDoc.save(function (err2,doc2) {
+                        if(err2){
+                            res.josn({
+                                status: '1',
+                                msg: err2.message
+                            });
+                        }else{
+                            res.json({
+                                status: '0',
+                                msg: '',
+                                result: 'success!!!!'
+                            })
+                        }
+                    })
+                }else{
+                    Goods.findOne({
+                        productId: productId
+                    },function (err1,doc) {
+                        console.log(7777,doc);
+                        if(err){
+                            res.josn({
+                                status: '1',
+                                msg: err1.message
+                            });
+                        }else{
+                            if(doc){
+                                doc.productNum = 1;
+                                doc.checked = 1;
+                                userDoc.cartList.push(doc);
+                                userDoc.save(function (err2,doc2) {
+                                    if(err2){
+                                        res.josn({
+                                            status: '1',
+                                            msg: err2.message
+                                        });
+                                    }else{
+                                        res.json({
+                                            status: '0',
+                                            msg: '',
+                                            result: 'success!!!!'
+                                        })
+                                    }
+                                })
+                            }
+                        }
+                    })
+                }
+            }
+        }
+    },'users')
 });
 
 module.exports = router;
