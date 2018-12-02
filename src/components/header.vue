@@ -25,9 +25,9 @@
             <div class="navbar-right-container" style="display: flex;">
                 <div class="navbar-menu-container">
                     <!--<a href="/" class="navbar-link">我的账户</a>-->
-                    <span class="navbar-link"></span>
-                    <a href="javascript:void(0)" class="navbar-link" @click="loginModalFlag=true">Login</a>
-                    <a href="javascript:void(0)" class="navbar-link">Logout</a>
+                    <span class="navbar-link" v-if="userName">{{userName}}</span>
+                    <a href="javascript:void(0)" class="navbar-link" @click="loginModalFlag=true" v-if="!userName">Login</a>
+                    <a href="javascript:void(0)" class="navbar-link" v-if="userName" @click="LogOut">Logout</a>
                     <div class="navbar-cart-container">
                         <span class="navbar-cart-count"></span>
                         <a class="navbar-link navbar-cart-link" href="/#/cart">
@@ -88,7 +88,8 @@
                 errorTip: false,
                 userName: '',
                 userPwd: '',
-                loginModalFlag: false
+                loginModalFlag: false,
+                nickName: ''
             }
         },
         components: {},
@@ -105,6 +106,7 @@
                     }).then((response)=>{
                         let res = response.data;
                         if(res.status = "0"){
+                            console.log(888,res);
                             this.errorTip = false;
                             this.userName = res.result.userName;
                             this.loginModalFlag = false;
@@ -114,10 +116,29 @@
                         }
                     })
                 }
+            },
+            LogOut(){
+                axios.post('/users/logout').then((response)=>{
+                    let res = response.data;
+                    if(res.status==='0'){
+                        this.userName = ''
+                    }
+                })
+            },
+            checkLogin(){
+                axios.get('/users/checkLogin').then((response)=>{
+                    console.log(33,response);
+                    let res = response.data;
+                    if(res.status ==="0"){
+                        this.userName = res.result;
+                    }else{
+                        this.userName = '';
+                    }
+                })
             }
         },
         mounted() {
-
+            this.checkLogin()
         }
     }
 </script>
