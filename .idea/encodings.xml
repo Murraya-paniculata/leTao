@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="GBK">
+    <file url="file://$PROJECT_DIR$/build/dev-server.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/config/index.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/package.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/server/models/goods.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/server/models/user.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/server/routes/goods.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/server/routes/users.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/App.vue" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/assets/css/login.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/components/breadcrumb.vue" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/components/modal.vue" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/router/index.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/views/GoodsList.vue" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/loading-svg/loading-bars.svg" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/loading-svg/loading-bubbles.svg" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/loading-svg/loading-spinning-bubbles.svg" charset="UTF-8" />
+    <file url="PROJECT" charset="GBK" />
+  </component>
+</project>
