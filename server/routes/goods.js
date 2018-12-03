@@ -10,35 +10,48 @@ let User = require('../models/user');
 * */
 mongoose.connect('mongodb://127.0.0.1:27017/dumall');
 
-mongoose.connection.on("connected",function(){
-   console.log('mongodb connected!!')
+mongoose.connection.on("connected", function () {
+    console.log('mongodb connected!!')
 });
 
-mongoose.connection.on("error",function () {
+mongoose.connection.on("error", function () {
     console.log("mongodb connected fail...")
 })
 
-mongoose.connection.on("disconnected",function () {
+mongoose.connection.on("disconnected", function () {
     console.log('mongodb connected disconnected.')
 })
 
-router.get("/list",function (req,res,next) {
+router.get("/list", function (req, res, next) {
     let page = parseInt(req.param('page'));
     let pageSize = parseInt(req.param('pageSize'));
     let priceLevel = req.param('priceLevel');
-    let priceGt = '',priceLt = '';
+    let priceGt = '', priceLt = '';
     let sort = req.param("sort");
-    let skip = (page-1)*pageSize;
-    let params = {
-
-    };
-    if(priceLevel!=='all'){
-        switch (priceLevel){
-            case '0':priceGt = 0;priceLt=100;break;
-            case '1':priceGt = 100;priceLt=500;break;
-            case '2':priceGt = 500;priceLt=1000;break;
-            case '3':priceGt = 1000;priceLt=3000;break;
-            case '4':priceGt = 3000;priceLt=8000;break;
+    let skip = (page - 1) * pageSize;
+    let params = {};
+    if (priceLevel !== 'all') {
+        switch (priceLevel) {
+            case '0':
+                priceGt = 0;
+                priceLt = 100;
+                break;
+            case '1':
+                priceGt = 100;
+                priceLt = 500;
+                break;
+            case '2':
+                priceGt = 500;
+                priceLt = 1000;
+                break;
+            case '3':
+                priceGt = 1000;
+                priceLt = 3000;
+                break;
+            case '4':
+                priceGt = 3000;
+                priceLt = 8000;
+                break;
         }
         params = {
             salePrice: {
@@ -49,13 +62,13 @@ router.get("/list",function (req,res,next) {
     }
     let goodsModel = Goods.find(params).skip(skip).limit(pageSize);
     goodsModel.sort({'salePrice': sort});
-    goodsModel.exec(function(err,doc){
-        if(err){
+    goodsModel.exec(function (err, doc) {
+        if (err) {
             res.josn({
                 status: '1',
                 msg: err.message
             });
-        }else{
+        } else {
             res.json({
                 status: '0',
                 msg: '',
@@ -69,33 +82,34 @@ router.get("/list",function (req,res,next) {
 });
 
 //加入购物车功能
-router.post("/addCart",function (req,res,next) {
-    let userId = '100000077';
+router.post("/addCart", function (req, res, next) {
+    let userId = req.cookies.userId;
+    console.log(7777, userId);
     let productId = req.body.productId;
-    console.log(343434);
-    User.findOne({ userId: userId },function (err,userDoc) {
-        if(err){
+    User.findOne({userId: userId}, function (err, userDoc) {
+        if (err) {
             res.json({
                 status: '1',
-                msg: err.message
+                msg: err.message,
+                result: 'error'
             })
-        }else{
-            if(userDoc){
+        } else {
+            if (userDoc) {
                 let goodsItem = '';
-                userDoc.cartList.forEach((item)=>{
-                    if(item.productId === productId){
+                userDoc.cartList.forEach((item) => {
+                    if (item.productId === productId) {
                         goodsItem = item;
-                        item.productNum ++;
+                        item.productNum++;
                     }
                 });
-                if(goodsItem){
-                    userDoc.save(function (err2,doc2) {
-                        if(err2){
+                if (goodsItem) {
+                    userDoc.save(function (err2, doc2) {
+                        if (err2) {
                             res.josn({
                                 status: '1',
                                 msg: err2.message
                             });
-                        }else{
+                        } else {
                             res.json({
                                 status: '0',
                                 msg: '',
@@ -103,28 +117,29 @@ router.post("/addCart",function (req,res,next) {
                             })
                         }
                     })
-                }else{
+                } else {
                     Goods.findOne({
                         productId: productId
-                    },function (err1,doc) {
-                        console.log(7777,doc);
-                        if(err){
+                    }, function (err1, doc) {
+                        console.log(7777, doc);
+                        if (err) {
                             res.josn({
                                 status: '1',
                                 msg: err1.message
                             });
-                        }else{
-                            if(doc){
+                        } else {
+                            if (doc) {
                                 doc.productNum = 1;
                                 doc.checked = 1;
                                 userDoc.cartList.push(doc);
-                                userDoc.save(function (err2,doc2) {
-                                    if(err2){
+                                userDoc.save(function (err2, doc2) {
+                                    if (err2) {
                                         res.josn({
                                             status: '1',
-                                            msg: err2.message
+                                            msg: err2.message,
+                                            result: 'success!!!!'
                                         });
-                                    }else{
+                                    } else {
                                         res.json({
                                             status: '0',
                                             msg: '',
@@ -138,7 +153,7 @@ router.post("/addCart",function (req,res,next) {
                 }
             }
         }
-    },'users')
+    }, 'users')
 });
 
 module.exports = router;
