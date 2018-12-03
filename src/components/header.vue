@@ -75,7 +75,7 @@
                         <ul>
                             <li class="regi_form_input noMargin">
                                 <i class="icon IconPwd"></i>
-                                <input type="password" tabindex="2" name="password" v-model="userPwd" class="regi_login_input">
+                                <input type="password" tabindex="2" name="password" v-model="userPwd" class="regi_login_input" @keyup.enter="login">
                             </li>
                         </ul>
                     </div>
