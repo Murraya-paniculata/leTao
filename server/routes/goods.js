@@ -94,6 +94,7 @@ router.post("/addCart", function (req, res, next) {
                 result: 'error'
             })
         } else {
+            //存在这个用户
             if (userDoc) {
                 let goodsItem = '';
                 userDoc.cartList.forEach((item) => {
@@ -102,6 +103,7 @@ router.post("/addCart", function (req, res, next) {
                         item.productNum++;
                     }
                 });
+                //用户信息中存在productId产品信息
                 if (goodsItem) {
                     userDoc.save(function (err2, doc2) {
                         if (err2) {
@@ -118,6 +120,7 @@ router.post("/addCart", function (req, res, next) {
                         }
                     })
                 } else {
+                    //用户信息中不存在productId产品信息，查询goods表中的产品信息加入users表中
                     Goods.findOne({
                         productId: productId
                     }, function (err1, doc) {
@@ -129,6 +132,7 @@ router.post("/addCart", function (req, res, next) {
                             });
                         } else {
                             if (doc) {
+                                console.log(55566,doc);
                                 doc.productNum = 1;
                                 doc.checked = 1;
                                 userDoc.cartList.push(doc);

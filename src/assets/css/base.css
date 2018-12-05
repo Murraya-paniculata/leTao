@@ -130,7 +130,7 @@ button {
 }
 
 button:disabled {
-  cursor: default;
+    cursor: not-allowed;
 }
 
 a {
@@ -717,6 +717,7 @@ a:hover {
   max-width: 240px;
   height: 30px;
   line-height: 30px;
+    display: inline-block;
 }
 
 .select-self-area .select-ipt {

@@ -123,4 +123,100 @@ router.post('/cart/deleteProduct',function (req,res,next) {
    })
 });
 
+router.post('/cartEdit',function (req,res,next) {
+    let userId = req.cookies.userId;
+    let productId = req.body.productId;
+    let productNum = req.body.productNum;
+    User.update({
+        'userId': userId,
+        'cartList.productId': productId
+    },{
+        'cartList.$.productNum': productNum,
+        'new': true
+    },function (err,doc) {
+        if(err){
+            res.json({
+                status: '1',
+                msg: '',
+                result: ''
+            })
+        }else{
+            console.log(77777,doc);
+            if(doc){
+                res.json({
+                    status: '0',
+                    msg: '',
+                    result: '修改数量成功'
+                })
+            }
+        }
+    })
+});
+
+router.post('/editCheckAll',function (req,res) {
+    let userId = req.cookies.userId;
+    let checkAll = req.body.checkAll?'1':'0';
+    User.findOne({userId: userId},function (err,user) {
+        if(err){
+            res.json({
+                status: '1',
+                msg: err.message,
+                result: ''
+            })
+        }else{
+            if(user){
+                user.cartList.forEach((item)=>{
+                    item.checked = checkAll;
+                });
+                user.save(function (err1,doc) {
+                    if(err1){
+                        res.json({
+                            status: '1',
+                            msg: err1.message,
+                            result: ''
+                        })
+                    }else{
+                        if(doc){
+                            res.json({
+                                status: '0',
+                                msg: '',
+                                result: doc
+                            })
+                        }
+                    }
+                })
+            }
+        }
+    })
+});
+
+router.post('/editCheck',function (req,res) {
+    let userId = req.cookies.userId;
+    let productId = req.body.productId;
+    let checked = req.body.checked?'1':'0';
+    User.update({
+        'userId': userId,
+        'cartList.productId': productId
+    },{
+        'cartList.$.checked': checked
+    },function(err,doc){
+        if(err){
+            res.json({
+                status: '1',
+                msg: err.message,
+                result: ''
+            })
+        }else{
+            console.log(9999,doc);
+            if(doc){
+                res.json({
+                    status: '0',
+                    msg: '',
+                    result: doc
+                })
+            }
+        }
+    })
+});
+
 module.exports = router;

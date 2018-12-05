@@ -18,7 +18,6 @@
 </style>
 <template>
     <div>
-        <nav-header></nav-header>
         <nav-breadcrumb>
             <span slot="bread">Goods</span>
         </nav-breadcrumb>
@@ -96,7 +95,6 @@
         <div class="md-overlay" v-show="overLayFlag" @click="closePop">
 
         </div>
-        <nav-footer></nav-footer>
     </div>
 </template>
 <script>

@@ -130,9 +130,8 @@ button {
 }
 
 button:disabled {
-  cursor: default;
+  cursor: not-allowed;
 }
-
 a {
   color: inherit;
   text-decoration: none;

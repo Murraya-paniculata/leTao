@@ -1,14 +1,17 @@
 <style>
     .input-sub, .input-add {
         min-width: 40px;
-        height: 100%;
-        border: 0;
+        border: none;
         color: #605F5F;
         text-align: center;
         font-size: 16px;
         overflow: hidden;
         display: inline-block;
         background: #f0f0f0;
+        padding: 0;
+        margin: 0;
+        position: relative;
+        top: -9px;
     }
 
     .item-quantity .select-self-area {
@@ -26,7 +29,6 @@
 </style>
 <template>
     <div>
-        <nav-header></nav-header>
         <div class="nav-breadcrumb-wrap">
             <div class="container">
                 <nav class="nav-breadcrumb">
@@ -93,7 +95,7 @@
                             <li v-for="item in cartList">
                                 <div class="cart-tab-1">
                                     <div class="cart-item-check">
-                                        <a href="javascipt:;" class="checkbox-btn item-check-btn">
+                                        <a href="javascript:;" class="checkbox-btn item-check-btn" @click="toggleCheck(item)" :class="{'check': item.checked-0}">
                                             <svg class="icon icon-ok">
                                                 <use xlink:href="#icon-ok"></use>
                                             </svg>
@@ -113,9 +115,11 @@
                                     <div class="item-quantity">
                                         <div class="select-self select-self-open">
                                             <div class="select-self-area">
-                                                <a class="input-sub">-</a>
+                                                <button class="input-sub" @click="editCart('minu',item)"
+                                                        :disabled="item.productNum == 1">-
+                                                </button>
                                                 <span class="select-ipt">{{item.productNum}}</span>
-                                                <a class="input-add">+</a>
+                                                <button class="input-add" @click="editCart('add',item)">+</button>
                                             </div>
                                         </div>
                                     </div>
@@ -125,7 +129,8 @@
                                 </div>
                                 <div class="cart-tab-5">
                                     <div class="cart-item-opration">
-                                        <a href="javascript:;" class="item-edit-btn" @click="deleteModalFlag(item.productId)">
+                                        <a href="javascript:;" class="item-edit-btn"
+                                           @click="deleteModalFlag(item.productId)">
                                             <svg class="icon icon-del">
                                                 <use xlink:href="#icon-del"></use>
                                             </svg>
@@ -140,20 +145,20 @@
                     <div class="cart-foot-inner">
                         <div class="cart-foot-l">
                             <div class="item-all-check">
-                                <a href="javascipt:;">
-                  <span class="checkbox-btn item-check-btn">
-                      <svg class="icon icon-ok"><use xlink:href="#icon-ok"/></svg>
-                  </span>
+                                <a href="javascipt:;" @click="toggleCheckAll">
+                                      <span class="checkbox-btn item-check-btn" :class="{'check': checkAllFlag}">
+                                          <svg class="icon icon-ok"><use xlink:href="#icon-ok"/></svg>
+                                      </span>
                                     <span>Select all</span>
                                 </a>
                             </div>
                         </div>
                         <div class="cart-foot-r">
                             <div class="item-total">
-                                Item total: <span class="total-price">500</span>
+                                Item total: <span class="total-price">{{totalPrice}}</span>
                             </div>
                             <div class="btn-wrap">
-                                <a class="btn btn--red">Checkout</a>
+                                <a class="btn btn--red" :class="{'btn--dis': totalPrice==0}" @click="checkOut">Checkout</a>
                             </div>
                         </div>
                     </div>
@@ -167,7 +172,6 @@
                 <a href="javascript:;" class="btn btn--m" @click="mdShow = false">取消</a>
             </div>
         </modal>
-        <nav-footer></nav-footer>
     </div>
 </template>
 <script>
@@ -189,6 +193,27 @@
             navHeader,
             modal
         },
+        computed: {
+            checkAllFlag(){
+                return this.cartList.length == this.checkedCount;
+            },
+            checkedCount(){
+                let i = 0;
+                this.cartList.forEach((item)=>{
+                    if(item.checked == '1')i++;
+                });
+                return i
+            },
+            totalPrice(){
+                let totalPrice = 0;
+                this.cartList.forEach((item)=>{
+                    if(item.checked == '1'){
+                        totalPrice += item.productNum * item.salePrice;
+                    }
+                });
+                return totalPrice
+            }
+        },
         methods: {
             getCartList() {
                 axios.get('/users/cartList', {}).then((response) => {
@@ -201,23 +226,70 @@
                     }
                 })
             },
-            mvProduct(){
-                axios.post('/users/cart/deleteProduct',{
+            mvProduct() {
+                axios.post('/users/cart/deleteProduct', {
                     productId: this.productId
-                }).then((response)=>{
+                }).then((response) => {
                     let res = response.data;
-                    if(res.status == '0'){
+                    if (res.status == '0') {
                         this.mdShow = false;
                         this.getCartList();
                     }
                 })
             },
-            deleteModalFlag(pId){
+            deleteModalFlag(pId) {
                 this.productId = pId;
                 this.mdShow = true;
             },
-            closeModal(){
+            closeModal() {
                 this.mdShow = false;
+            },
+            editCart(flag, item) {
+                if (flag === 'minu') {
+                    if (item.productNum >= 2) item.productNum--;
+                } else {
+                    item.productNum++;
+                }
+                axios.post('/users/cartEdit', {
+                    productId: item.productId,
+                    productNum: item.productNum
+                }).then((response) => {
+                    let res = response.data;
+                    if (res.status === '0') {
+
+                    } else {
+
+                    }
+                })
+            },
+            toggleCheckAll(){
+                let checkAllFlag = !this.checkAllFlag;
+                axios.post('/users/editCheckAll',{
+                    checkAll: checkAllFlag
+                }).then((response)=>{
+                    let res = response.data;
+                    this.cartList = res.result.cartList;
+                })
+            },
+            toggleCheck(item){
+                item.checked = !(item.checked-0);
+                console.log(989898,item.checked);
+                axios.post('/users/editCheck',{
+                    checked: item.checked,
+                    productId: item.productId
+                }).then((response)=>{
+                    let res = response.data;
+                    if(res.status == '0'){
+                        console.log(5555,res.result);
+                    }
+                })
+            },
+            checkOut(){
+                if(this.totalPrice!=0){
+                    this.$router.push({
+                        path: '/address'
+                    })
+                }
             }
         },
         mounted() {

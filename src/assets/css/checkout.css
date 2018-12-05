@@ -255,7 +255,7 @@ html {
 }
 
 .addr-list li .addr-set-default {
-  display: none;
+  /*display: none;*/
 }
 
 .addr-list li .addr-set-default, .addr-list li .addr-default {
@@ -739,7 +739,6 @@ html {
     padding: 0 10px 0 36px;
     font-size: 12px;
   }
-
   .cart-item-list .item-quantity > div {
     display: inline-block;
     margin-right: 3px;
