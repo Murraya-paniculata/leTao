@@ -168,7 +168,6 @@
                     this.loading = false;
                     let res = response.data;
                    if(res.status == '0'){
-                       console.log(999,res.result);
                        if(flag){
                            this.goodsList = [...this.goodsList,...res.result.list];
                            if(res.result.count === 0){

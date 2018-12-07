@@ -4,7 +4,15 @@ let usersSchema = new Schema({
     "userId": String,
     "userName": String,
     "userPwd": String,
-    "orderList": Array,
+    "orderList": [{
+            "orderId": String,
+            "orderTotal": String,
+            "addressInfo": Object,
+            "goodsList": Array,
+            "orderStatus": String,
+            "createDate": String
+        }
+    ],
     "cartList": [{
         "productId": String,
         "productName": String,
@@ -16,12 +24,12 @@ let usersSchema = new Schema({
     }],
     "addressList": [
         {
-            "addressId" : String,
-            "userName" : String,
-            "streetName" : String,
-            "postCode" : String,
-            "tel" : String,
-            "isDefault" : Boolean
+            "addressId": String,
+            "userName": String,
+            "streetName": String,
+            "postCode": String,
+            "tel": String,
+            "isDefault": Boolean
         }
     ]
 });

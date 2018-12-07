@@ -583,6 +583,7 @@ a:hover {
   border-color: #ccc !important;
   background: transparent !important;
   color: #ccc !important;
+    cursor: not-allowed;
 }
 
 .btn--red.btn--dis, .btn--red[href].btn--dis {

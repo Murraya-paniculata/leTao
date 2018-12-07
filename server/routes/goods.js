@@ -124,7 +124,6 @@ router.post("/addCart", function (req, res, next) {
                     Goods.findOne({
                         productId: productId
                     }, function (err1, doc) {
-                        console.log(7777, doc);
                         if (err) {
                             res.josn({
                                 status: '1',
@@ -132,7 +131,6 @@ router.post("/addCart", function (req, res, next) {
                             });
                         } else {
                             if (doc) {
-                                console.log(55566,doc);
                                 doc.productNum = 1;
                                 doc.checked = 1;
                                 userDoc.cartList.push(doc);
@@ -144,11 +142,13 @@ router.post("/addCart", function (req, res, next) {
                                             result: 'success!!!!'
                                         });
                                     } else {
-                                        res.json({
-                                            status: '0',
-                                            msg: '',
-                                            result: 'success!!!!'
-                                        })
+                                        if(doc2){
+                                            res.json({
+                                                status: '0',
+                                                msg: '',
+                                                result: 'success!!!!'
+                                            })
+                                        }
                                     }
                                 })
                             }
