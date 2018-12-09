@@ -2,8 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="70e02ca3-7ba1-41d6-8e40-3947d014c3f1" name="Default" comment="修改配置">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/ES6-2.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/ES6.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/Promise.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/Promise.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/axios.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/page.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/router/router-dy.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/router/router-nest.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/router/router.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/vue-resource/vue-axios.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/vue-resource/vue-resource.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ImoocMall.iws" />
@@ -88,16 +97,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1310">
               <caret line="75" column="21" lean-forward="false" selection-start-line="75" selection-start-column="12" selection-end-line="75" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/models/user.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="8" column="33" lean-forward="false" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -438,7 +437,7 @@
       <workItem from="1543139599706" duration="40437000" />
       <workItem from="1543728418321" duration="44461000" />
       <workItem from="1543906548814" duration="66875000" />
-      <workItem from="1544371948105" duration="6623000" />
+      <workItem from="1544371948105" duration="6771000" />
     </task>
     <task id="LOCAL-00001" summary="组件拆分">
       <created>1543564135354</created>
@@ -514,7 +513,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="176772000" />
+    <option name="totallyTimeSpent" value="176920000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -527,9 +526,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14799154" sideWeight="0.4904014" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14799154" sideWeight="0.4904014" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329602" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27985075" sideWeight="0.50277996" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329602" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -720,13 +718,6 @@
         <state relative-caret-position="420">
           <caret line="31" column="27" lean-forward="true" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mock/goods.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="39" column="6" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -971,6 +962,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="334">
           <caret line="229" column="21" lean-forward="false" selection-start-line="229" selection-start-column="21" selection-end-line="229" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mock/goods.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="463">
+          <caret line="39" column="6" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
           <folding />
         </state>
       </provider>
