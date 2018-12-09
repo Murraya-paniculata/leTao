@@ -8,7 +8,7 @@ let User = require('../models/user');
 /*
 * 连接数据库
 * */
-mongoose.connect('mongodb://127.0.0.1:27017/dumall');
+mongoose.connect('mongodb://127.0.0.1:27017/dumall',{useMongoClient:true});
 
 mongoose.connection.on("connected", function () {
     console.log('mongodb connected!!')
@@ -78,7 +78,7 @@ router.get("/list", function (req, res, next) {
                 }
             })
         }
-    })
+    },'goods')
 });
 
 //加入购物车功能

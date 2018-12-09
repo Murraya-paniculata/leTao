@@ -4,11 +4,14 @@
     <file url="file://$PROJECT_DIR$/build/dev-server.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/config/index.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/package.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/server/bin/www" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/server/models/goods.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/server/models/user.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/server/package.json" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/server/routes/goods.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/server/routes/users.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/server/util/util.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/server/views/index.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/App.vue" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/assets/css/login.css" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/components/breadcrumb.vue" charset="UTF-8" />
